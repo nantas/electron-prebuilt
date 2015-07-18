@@ -24,7 +24,10 @@ var paths = {
 if (!paths[platform]) throw new Error('Unknown platform: ' + platform)
 
 // downloads if not cached
-download({version: version}, extractFile)
+download({
+    version: version,
+    arch: platform === 'win32' ? 'ia32' : os.arch();
+}, extractFile);
 
 // unzips and makes path.txt point at the correct executable
 function extractFile (err, zipPath) {
