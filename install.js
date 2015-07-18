@@ -2,6 +2,7 @@
 
 // maintainer note - x.y.z-ab version in package.json -> x.y.z
 var version = require('../../package').electronVersion.replace(/-.*/, '')
+console.log("Downloading Electron v" + version);
 
 var fs = require('fs')
 var os = require('os')
@@ -26,7 +27,7 @@ if (!paths[platform]) throw new Error('Unknown platform: ' + platform)
 // downloads if not cached
 download({
     version: version,
-    arch: platform === 'win32' ? 'ia32' : os.arch();
+    arch: platform === 'win32' ? 'ia32' : os.arch()
 }, extractFile);
 
 // unzips and makes path.txt point at the correct executable
